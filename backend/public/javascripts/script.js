@@ -70,8 +70,8 @@ camera.start();
 // options.
 new ControlPanel(controlsElement, {
       selfieMode: true,
-      maxNumHands: 2,
-      minDetectionConfidence: 0.5,
+      maxNumHands: 1,
+      minDetectionConfidence: 0.8,
       minTrackingConfidence: 0.5
     })
     .add([
