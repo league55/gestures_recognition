@@ -17,9 +17,9 @@ spinner.ontransitionend = () => {
   spinner.style.display = 'none';
 };
 
-function onResults(results) {
-  // Hide the spinner.
-  document.body.classList.add('loaded');
+  function onResults(results) {
+    // Hide the spinner.
+    document.body.classList.add('loaded');
 
   // Update the frame rate.
   fpsControl.tick();
