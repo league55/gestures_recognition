@@ -1,8 +1,7 @@
 var fs = require('fs');
 
-exports.appendLines = (lines) => {
-  const res = lines.map(line => line.join(',')).join('\n');
-  fs.appendFile('data.csv', res, function (err) {
+exports.appendLines = (lines, filename = 'data.csv') => {
+  fs.appendFile(filename, lines, function (err) {
     if (err) throw err;
     console.log('Updated!');
   });

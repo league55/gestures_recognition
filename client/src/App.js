@@ -1,6 +1,7 @@
 import '@mediapipe/control_utils/control_utils.css'
 import React from 'react'
 import Video from "./components/video/Video";
+import {appendLine} from "./mediapipe/csv";
 
 class App extends React.Component {
 
@@ -28,7 +29,8 @@ class App extends React.Component {
   }
 
   handleSaveResults() {
-    console.log(this.state.data);
+    console.log(this.state.data.multiHandLandmarks);
+    appendLine({data: this.state.data.multiHandLandmarks[0], label: this.state.label});
   }
 
   render() {
