@@ -1,27 +1,20 @@
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
-var sassMiddleware = require('node-sass-middleware');
+const PORT = 3300
+const express = require('express')
+const cors = require('cors')
+const bodyParser = require('body-parser')
+const {appendLines} = require("./public/javascripts/csv");
+const app = express()
 
-var indexRouter = require('./routes/index');
-var dataRouter = require('./routes/data');
+app.use(bodyParser.json()) // note: this is before the route
+app.use(cors())
 
-var app = express();
+app.post('/data', (req, res) => {
+  console.log(req.body);
+  appendLines(req.body);
+  res.sendStatus(200);
+})
 
-app.use(logger('dev'));
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
-app.use(sassMiddleware({
-  src: path.join(__dirname, 'public'),
-  dest: path.join(__dirname, 'public'),
-  indentedSyntax: true, // true = .sass and false = .scss
-  sourceMap: true
-}));
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.json())
 
-app.use('/', indexRouter);
-app.use('/data', dataRouter);
-
-module.exports = app;
+console.log(`Listen on port ${PORT}`)
+app.listen(PORT)
