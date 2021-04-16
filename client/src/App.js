@@ -5,6 +5,8 @@ import {appendLine} from "./api/api";
 import MlControls from "./components/MlControls";
 import {predict} from "./ml/ml";
 import {getDistancesData} from "./ml/process";
+import {Col, Container, Row} from "react-bootstrap";
+import TestingPanel from "./components/testingPanel/TestingPanel";
 
 class App extends React.Component {
 
@@ -19,44 +21,50 @@ class App extends React.Component {
 
 
   handleLabelChange(e) {
-    this.setState(Object.assign({}, this.state, {label: e.target.value}));
+    //this.setState(Object.assign({}, this.state, {label: e.target.value}));
   }
 
   handleModelChange(model) {
-    this.setState(Object.assign({}, this.state, {model}));
+    //this.setState(Object.assign({}, this.state, {model}));
   }
 
   async handleDataResults(results) {
     let lastGestureLabel = this.state.lastGestureLabel;
-    if(this.state.model && results.multiHandLandmarks) {
-      const predictResult = await predict(this.state.model, getDistancesData(results.multiHandLandmarks[0]));
-      const labelsMapping = ["none ", "OK "];
-      lastGestureLabel = predictResult[0] > predictResult[1] ? labelsMapping[0] + predictResult[0] : labelsMapping[1] + predictResult[1];
-    }
+    // if (this.state.model && results) {
+    //   const predictResult = await predict(this.state.model, getDistancesData(results[0]));
+    //   const labelsMapping = ["none ", "OK "];
+    //   lastGestureLabel = predictResult[0] > predictResult[1] ? labelsMapping[0] + predictResult[0] : labelsMapping[1] + predictResult[1];
+    // }
     this.setState(Object.assign({}, this.state, {data: results, lastGestureLabel: lastGestureLabel}));
   }
 
   handleSaveResults() {
-    console.log(this.state.data.multiHandLandmarks);
-    appendLine({data: this.state.data.multiHandLandmarks[0], label: this.state.label});
+    console.log(this.state.data);
+    appendLine({data: this.state.data[0], label: this.state.label});
   }
 
   render() {
-    const lastGesture = this.state.data.multiHandLandmarks ? this.state.data.multiHandLandmarks[0] : "";
+    const lastGesture = this.state.data ? this.state.data[0] : "";
     return (
-      <div className={"container"}>
-        <span>lastGesture: {this.state.lastGestureLabel}</span>
-        <Video callback={this.handleDataResults}/>
-        <div className={"data_panel"}>
-          <div>
-            <button id="saveBtn" onClick={this.handleSaveResults}>Save</button>
-            <button id="cleanBtn">Clean</button>
-            <MlControls handleModelChange={this.handleModelChange} lastGesture={lastGesture} model={this.state.model} handlePredict={this.handlePredict}/>
-
-            {/*<label htmlFor="name">Label</label><input id="label" onChange={this.handleLabelChange}/>*/}
-          </div>
-        </div>
-      </div>
+      <Container>
+        <Row>
+          <Col md={5}>
+            <Video callback={this.handleDataResults}/>
+          </Col>
+          <Col md={5}>
+            <span>lastGesture: {this.state.lastGestureLabel}</span>
+            <div className={"data_panel"}>
+              <div>
+                <button id="saveBtn" onClick={this.handleSaveResults}>Save</button>
+                <button id="cleanBtn">Clean</button>
+                <MlControls handleModelChange={this.handleModelChange} lastGesture={lastGesture}
+                            model={this.state.model} handlePredict={this.handlePredict}/>
+              </div>
+              <TestingPanel points={this.state.data && this.state.data[0]}/>
+            </div>
+          </Col>
+        </Row>
+      </Container>
     );
   }
 }

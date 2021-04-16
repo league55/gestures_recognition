@@ -2,14 +2,15 @@
 import {drawConnectors, drawLandmarks, lerp} from '@mediapipe/drawing_utils/drawing_utils';
 import {HAND_CONNECTIONS, Hands} from '@mediapipe/hands/hands';
 import {Camera} from '@mediapipe/camera_utils/camera_utils';
-import {ControlPanel, FPS, StaticText, Slider, Toggle} from '@mediapipe/control_utils/control_utils';
+import {ControlPanel, FPS, Slider, StaticText, Toggle} from '@mediapipe/control_utils/control_utils';
 
 // We'll add this to our control panel later, but we'll save it here so we can
 // call tick() each time the graph runs.
 // eslint-disable-next-line
-const fpsControl = new FPS();
+export const fpsControl = new FPS();
 
-const noop = ()=>{};
+const noop = () => {
+};
 
 function onResults(results, canvasElement, callback = noop) {
   const canvasCtx = canvasElement.getContext('2d');
@@ -29,14 +30,14 @@ function onResults(results, canvasElement, callback = noop) {
       // eslint-disable-next-line
       drawConnectors(
         canvasCtx, landmarks, HAND_CONNECTIONS,
-        {color: isRightHand ? '#00FF00' : '#FF0000'}),
-        drawLandmarks(canvasCtx, landmarks, {
-          color: isRightHand ? '#00FF00' : '#FF0000',
-          fillColor: isRightHand ? '#FF0000' : '#00FF00',
-          radius: (x) => {
-            return lerp(x.from.z, -0.15, .1, 10, 1);
-          }
-        });
+        {color: isRightHand ? '#00FF00' : '#FF0000'});
+      drawLandmarks(canvasCtx, landmarks, {
+        color: isRightHand ? '#00FF00' : '#FF0000',
+        fillColor: isRightHand ? '#FF0000' : '#00FF00',
+        radius: (x) => {
+          return lerp(x.from.z, -0.15, .1, 10, 1);
+        }
+      });
     }
   }
   canvasCtx.restore();
@@ -61,8 +62,8 @@ export function initCamera(videoElement, hands) {
     onFrame: async () => {
       await hands.send({image: videoElement});
     },
-    width: 1280,
-    height: 720
+    width: 480,
+    height: 360
   });
   camera.start();
 }

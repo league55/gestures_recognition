@@ -31,8 +31,8 @@ class MlControls extends React.Component {
     trainModel(preparedData)
       .then(testModel)
       .then(model => {
-      this.props.handleModelChange(model);
-    });
+        this.props.handleModelChange(model);
+      });
   }
 
   render() {
