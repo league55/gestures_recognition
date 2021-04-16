@@ -7,15 +7,14 @@
     "@mediapipe/control_utils": "^0.1.1606863011",
     "@mediapipe/drawing_utils": "^0.2.1614797616",
     "@mediapipe/hands": "^0.1.1614621970",
-    "@testing-library/jest-dom": "^5.11.4",
-    "@testing-library/react": "^11.1.0",
-    "@testing-library/user-event": "^12.1.10",
     "browserify-fs": "^1.0.0",
     "node-sass": "^5.0.0",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-scripts": "4.0.3",
-    "web-vitals": "^1.0.1"
+    "web-vitals": "^1.0.1",
+    "@tensorflow/tfjs": "^3.3.0",
+    "@tensorflow/tfjs-vis": "^1.5.0"
   },
   "scripts": {
     "start": "react-scripts start",

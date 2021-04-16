@@ -19,3 +19,7 @@ exports.appendLines = (raws) => {
   })
     .then(r => r.text().then(r => console.log(r)));
 }
+
+exports.loadData = async () => {
+  return fetch('http://localhost:3300/data').then(r => r.text());
+}

@@ -4,7 +4,3 @@ exports.getDistance = (a, b) => {
   const distanceReal = distanceRaw / ((a.z + b.z) / 2);
   console.debug("distanceReal", distanceReal);
 }
-
-const getAvg = (values) => {
-  return values.reduce((a, b) => a + b, 0) / values.length;
-}
