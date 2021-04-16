@@ -15,7 +15,7 @@ exports.trainModel = function (data) {
   const model = tf.sequential()
 
   model.add(tf.layers.dense({
-    inputShape: [10],
+    inputShape: [features[0].length],
     activation: "sigmoid",
     units: 5,
   }))
