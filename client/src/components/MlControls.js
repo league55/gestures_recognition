@@ -2,6 +2,7 @@ import React from 'react'
 import {getDistancesData, prepareData} from "../ml/process";
 import {testModel, trainModel} from "../ml/ml";
 import {loadData} from "../api/api";
+import {asJSON} from "../ml/csv";
 
 class MlControls extends React.Component {
 
@@ -21,13 +22,16 @@ class MlControls extends React.Component {
   }
 
   addDataRow(row, label) {
-    this.state.dynamicData.push([getDistancesData(row), label]);
+    let newEntry = [...row, label];
+    console.log("New entry", newEntry);
+    this.state.dynamicData.push(newEntry);
     console.log("dataset size is now: " + this.state.dynamicData.length);
     this.setState(Object.assign({}, this.state, {dynamicData: this.state.dynamicData}));
   }
 
   async handleTrain() {
-    const preparedData = prepareData(this.state.baseData).concat(this.state.dynamicData);
+    let allData = asJSON(this.state.baseData).concat(this.state.dynamicData);
+    const preparedData = prepareData(allData);
     trainModel(preparedData)
       .then(testModel)
       .then(model => {

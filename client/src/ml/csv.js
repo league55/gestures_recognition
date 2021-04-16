@@ -6,3 +6,12 @@ exports.appendLines = (lines, filename = 'data.csv') => {
     console.log('Updated!');
   });
 }
+
+
+exports.asJSON = (contents) => {
+  return contents.split("\n")
+    .filter(lineStr => lineStr.length)
+    .map((lineStr) => {
+      return JSON.parse("[" + lineStr + "]");
+    });
+}

@@ -29,7 +29,7 @@ class App extends React.Component {
   }
 
   async handleDataResults(results) {
-    let lastGestureLabel = this.state.lastGestureLabel;
+    let lastGestureLabel = this.state.lastGestureLabel;lastGesture
     if (this.state.model && results) {
       const predictResult = await predict(this.state.model, getDistancesData(results[0]));
       const labelsMapping = ["none ", "OK "];
