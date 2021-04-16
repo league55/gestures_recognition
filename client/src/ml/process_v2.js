@@ -3,10 +3,10 @@ const {normalizeCoordinates} = require("./geometry");
 function getDataLocal(line) {
   const label = line.pop();
   const features = normalizeCoordinates(line)[1];
-  return {label, features};
+  return {label, features: features.map(feature => [feature.x, feature.y])};
 }
 
-exports.getData = (lineStr) => {
+exports.prepareSingleEntry = (lineStr) => {
   return getDataLocal(lineStr);
 }
 

@@ -1,6 +1,6 @@
 import React from 'react'
-import {getDistancesData, prepareData} from "../ml/process";
-import {testModel, trainModel} from "../ml/ml";
+import {prepareData} from "../ml/process_v2";
+import {testModel, trainModel} from "../ml/ml_v2";
 import {loadData} from "../api/api";
 import {asJSON} from "../ml/csv";
 
@@ -43,8 +43,8 @@ class MlControls extends React.Component {
     return (
       <div>
         <button id="trainBtn" onClick={this.handleTrain}>Train</button>
-        <button id="addRowOk" onClick={() => this.addDataRow(this.props.lastGesture, "ok")}>OK</button>
-        <button id="addRowNone" onClick={() => this.addDataRow(this.props.lastGesture, "")}>None</button>
+        <button id="addRowOk" onClick={() => this.addDataRow(this.props.lastGesture, "palm")}>Palm</button>
+        <button id="addRowNone" onClick={() => this.addDataRow(this.props.lastGesture, "fist")}>Fist</button>
       </div>
     );
   }

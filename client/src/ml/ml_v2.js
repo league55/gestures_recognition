@@ -1,49 +1,36 @@
-function getModel(tf) {
+function getModel(tf, dataSize) {
 // Train a simple model:
   // build neural network
   const model = tf.sequential()
 
-  // In the first layer of our convolutional neural network we have
-  // to specify the input shape. Then we specify some parameters for
-  // the convolution operation that takes place in this layer.
-  model.add(tf.layers.conv2d({
-    inputShape: [20, 2],
-    kernelSize: 5,
-    filters: 8,
-    strides: 1,
-    activation: 'relu',
-    kernelInitializer: 'varianceScaling'
-  }));
-
-  // The MaxPooling layer acts as a sort of downsampling using max values
-  // in a region instead of averaging.
-  model.add(tf.layers.maxPooling2d({poolSize: [2, 2], strides: [2, 2]}));
-
-  // Repeat another conv2d + maxPooling stack.
-  // Note that we have more filters in the convolution.
-  model.add(tf.layers.conv2d({
-    kernelSize: 5,
-    filters: 16,
-    strides: 1,
-    activation: 'relu',
-    kernelInitializer: 'varianceScaling'
-  }));
-  model.add(tf.layers.maxPooling2d({poolSize: [2, 2], strides: [2, 2]}));
-
   // Now we flatten the output from the 2D filters into a 1D vector to prepare
   // it for input into our last layer. This is common practice when feeding
   // higher dimensional data to a final classification output layer.
-  model.add(tf.layers.flatten());
+  model.add(tf.layers.flatten({inputShape: [21, 2],}));
 
   // Our last layer is a dense layer which has 10 output units, one for each
   // output class (i.e. 0, 1, 2, 3, 4, 5, 6, 7, 8, 9).
-  const NUM_OUTPUT_CLASSES = 2;
   model.add(tf.layers.dense({
-    units: NUM_OUTPUT_CLASSES,
-    kernelInitializer: 'varianceScaling',
-    activation: 'softmax'
+    inputShape: [21],
+    activation: "sigmoid",
+    units: 10,
   }));
 
+  model.add(tf.layers.dense({
+    inputShape: [10],
+    activation: "sigmoid",
+    units: 5,
+  }))
+  model.add(tf.layers.dense({
+    activation: "sigmoid",
+    units: 2,
+  }))
+  model.compile({
+    loss: "meanSquaredError",
+    optimizer: tf.train.adam(.06),
+  })
+
+  model.summary();
 
   // Choose an optimizer, loss function and accuracy metric,
   // then compile and return the model
@@ -56,25 +43,22 @@ function getModel(tf) {
   return model;
 }
 
-async function train(model, data) {
+async function train(tf, model, data) {
   const features = data.map(entry => entry[0]);
-  const labels =  data.map(entry => entry[1]).map(item => [
-    item === "" ? 1 : 0,
-    item === "ok" ? 1 : 0
+  const labels = data.map(entry => entry[1]).map(item => [
+    item === "palm" ? 1 : 0,
+    item === "fist" ? 1 : 0
   ]);
 
-  const metrics = ['loss', 'val_loss', 'acc', 'val_acc'];
-  const container = {
-    name: 'Model Training', tab: 'Model', styles: { height: '1000px' }
-  };
-
-  const xs = tf.tensor2d(features);
+  const xs = tf.tensor3d(features);
   const ys = tf.tensor2d(labels);
   xs.print();
   xs.print();
+  console.log(xs.shape);
 
   return model.fit(xs, ys, {
     epochs: 100,
+    shuffle: true,
     callbacks: {
       onBatchEnd,
       onEpochEnd: (epoch, log) => console.log(`Epoch ${epoch}: loss = ${log.loss}`)
@@ -86,19 +70,13 @@ async function train(model, data) {
 }
 
 exports.trainModel = function (data) {
-  const features = data.map(entry => entry[0]);
-  const labels = data.map(entry => entry[1]).map(item => [
-    item === "" ? 1 : 0,
-    item === "ok" ? 1 : 0
-  ]);
-
   const tf = require('@tensorflow/tfjs');
   // Optional Load the binding:
   // Use '@tensorflow/tfjs-node-gpu' if running with GPU.
   require('@tensorflow/tfjs');
 
-  const model = getModel(tf);
-  return train(model, data);
+  const model = getModel(tf, data.length);
+  return train(tf, model, data);
 }
 
 exports.testModel = async function (model) {

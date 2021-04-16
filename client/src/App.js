@@ -3,8 +3,8 @@ import React from 'react'
 import Video from "./components/video/Video";
 import {appendLine} from "./api/api";
 import MlControls from "./components/MlControls";
-import {predict} from "./ml/ml";
-import {getDistancesData} from "./ml/process";
+import {predict} from "./ml/ml_v2";
+import {prepareSingleEntry} from "./ml/process_v2";
 import {Col, Container, Row} from "react-bootstrap";
 import TestingPanel from "./components/testingPanel/TestingPanel";
 
@@ -29,11 +29,14 @@ class App extends React.Component {
   }
 
   async handleDataResults(results) {
-    let lastGestureLabel = this.state.lastGestureLabel;lastGesture
+    let lastGestureLabel = this.state.lastGestureLabel;
     if (this.state.model && results) {
-      const predictResult = await predict(this.state.model, getDistancesData(results[0]));
-      const labelsMapping = ["none ", "OK "];
-      lastGestureLabel = predictResult[0] > predictResult[1] ? labelsMapping[0] + predictResult[0] : labelsMapping[1] + predictResult[1];
+      let testEntry = prepareSingleEntry(results[0].concat("lable_unknown"));
+      const predictResult = await predict(this.state.model, testEntry.features);
+      const labelsMapping = ["Palm ", "Fist "];
+      let bestMatch = predictResult.indexOf(Math.max(...predictResult));
+
+      lastGestureLabel = predictResult[bestMatch] > 0.7 ? labelsMapping[bestMatch] + predictResult[bestMatch] : "Undefined " + predictResult[1];
     }
     this.setState(Object.assign({}, this.state, {data: results, lastGestureLabel: lastGestureLabel}));
   }
