@@ -33,10 +33,12 @@ class Video extends React.Component {
 
   render() {
     return (
-      <div className={"video-container"}>
-        <video className={"input_video"} ref={this.input_video}/>
-        <canvas className={"output_canvas"} ref={this.output_canvas} width="480px" height="360px"/>
-        <div className="control-panel" ref={this.control_panel}/>
+      <div>
+        <div className={"video-container"}>
+            <video className={"input_video"} ref={this.input_video}/>
+            <canvas className={"output_canvas"} ref={this.output_canvas} width="480px" height="360px"/>
+          </div>
+          <div className="control-panel" ref={this.control_panel}/>
       </div>
     );
   }

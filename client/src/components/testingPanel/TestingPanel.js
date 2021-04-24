@@ -1,6 +1,5 @@
 import React from 'react'
 import {draw} from "./drawing";
-import {Row} from "react-bootstrap";
 import {normalizeCoordinates} from "../../ml/geometry";
 
 class TestingPanel extends React.Component {
@@ -35,15 +34,15 @@ class TestingPanel extends React.Component {
     return (
       <div>
         <button id="test" onClick={this.handleTest}>Test</button>
-        <Row>
+        <div>
           <canvas ref={this.canvas_original} width="480px" height="360px"/>
-        </Row>
-        <Row>
+        </div>
+        <div>
           <canvas ref={this.canvas_left_bot} width="480px" height="360px"/>
-        </Row>
-        <Row>
+        </div>
+        <div>
           <canvas ref={this.canvas_norm} width="480px" height="360px"/>
-        </Row>
+        </div>
       </div>
     );
   }

@@ -4,7 +4,7 @@ const tfvis = require('@tensorflow/tfjs-vis');
 // Use '@tensorflow/tfjs-node-gpu' if running with GPU.
 const classNames = ['palm', 'fist'];
 
-function getModel(dataSize) {
+function getModel() {
 // Train a simple model:
   // build neural network
   const model = tf.sequential()
@@ -19,8 +19,13 @@ function getModel(dataSize) {
   model.add(tf.layers.dense({
     inputShape: [21],
     activation: "relu",
-    units: 10,
+    units: 15,
   }));
+  model.add(tf.layers.dense({
+    inputShape: [15],
+    activation: "relu",
+    units: 10,
+  }))
   model.add(tf.layers.dense({
     inputShape: [10],
     activation: "relu",
@@ -84,7 +89,7 @@ async function train(model, dataPacks) {
   const fitCallbacks = tfvis.show.fitCallbacks(container, metrics);
 
   return model.fit(trainXs, trainYs, {
-    epochs: 15,
+    epochs: 35,
     shuffle: true,
     validationData: [testXs.squeeze(), testYs.squeeze()],
     callbacks: fitCallbacks
