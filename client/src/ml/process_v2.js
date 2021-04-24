@@ -6,12 +6,12 @@ function getDataLocal(line) {
   return {label, features: features.map(feature => [feature.x, feature.y])};
 }
 
-exports.prepareSingleEntry = (lineStr) => {
+export const prepareSingleEntry = (lineStr) => {
   return getDataLocal(lineStr);
 }
 
 
-exports.prepareData = (contents) => {
+export const prepareData = (contents) => {
   const data = [];
 
   contents.forEach((line) => {

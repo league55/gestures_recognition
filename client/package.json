@@ -2,6 +2,7 @@
   "name": "client",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://league55.github.io/gestures_recognition/",
   "dependencies": {
     "@mediapipe/camera_utils": "^0.1.1606863050",
     "@mediapipe/control_utils": "^0.1.1606863011",
@@ -10,6 +11,7 @@
     "@tensorflow/tfjs": "^3.3.0",
     "@tensorflow/tfjs-vis": "^1.5.1",
     "browserify-fs": "^1.0.0",
+    "gh-pages": "^3.1.0",
     "node-sass": "^5.0.0",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
@@ -20,7 +22,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "yarn run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [

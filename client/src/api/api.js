@@ -1,4 +1,4 @@
-exports.appendLine = (raw) => {
+export const appendLine = (raw) => {
   fetch('http://localhost:3300/raw', {
     method: "POST",
     body: JSON.stringify(raw),
@@ -9,7 +9,7 @@ exports.appendLine = (raw) => {
     .then(r => r.text().then(r => console.log(r)));
 }
 
-exports.appendLines = (raws) => {
+export const appendLines = (raws) => {
   fetch('http://localhost:3300/raws', {
     method: "POST",
     body: JSON.stringify(raws),
@@ -20,6 +20,6 @@ exports.appendLines = (raws) => {
     .then(r => r.text().then(r => console.log(r)));
 }
 
-exports.loadData = async () => {
+export const loadData = async () => {
   return fetch('http://localhost:3300/data').then(r => r.text());
 }

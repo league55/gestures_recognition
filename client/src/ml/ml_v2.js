@@ -139,7 +139,7 @@ function dispose(input) {
   return trainedModel;
 }
 
-exports.trainModel = function (data) {
+export const trainModel = function (data) {
   const model = getModel(data.length);
   const dataPacks = prepareTrainDataPacks(data);
   return train(model, dataPacks)
@@ -147,7 +147,7 @@ exports.trainModel = function (data) {
     .then(dispose);
 }
 
-exports.predict = async function (model, input) {
+export const predict = async function (model, input) {
   const tf = require('@tensorflow/tfjs');
   const prediction = model.predict(tf.tensor(input).expandDims());
   return prediction.data().then(data => {

@@ -1,11 +1,11 @@
-exports.getDistance = (a, b) => {
+export const getDistance = (a, b) => {
   const distanceRaw = ((a.x - b.x) ** 2 + (a.y - b.y) ** 2) ** 0.5;
   console.debug("distanceRaw", distanceRaw);
   const distanceReal = distanceRaw / ((a.z + b.z) / 2);
   console.debug("distanceReal", distanceReal);
 }
 
-exports.normalizeCoordinates = (pointsList = []) => {
+export const normalizeCoordinates = (pointsList = []) => {
   const extrems = {leftX: 1, bottomY: 1, rightX: 0, topY: 0};
   const bordersInitial = {leftX: 0, bottomY: 0, rightX: 1, topY: 1};
 

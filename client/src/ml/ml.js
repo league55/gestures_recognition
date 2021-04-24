@@ -1,4 +1,4 @@
-exports.trainModel = function (data) {
+export const trainModel = function (data) {
   const features = data.map(entry => entry[0]);
   const labels =  data.map(entry => entry[1]).map(item => [
     item === "" ? 1 : 0,
@@ -52,7 +52,7 @@ exports.trainModel = function (data) {
   });
 }
 
-exports.predict = async function (model, input) {
+export const predict = async function (model, input) {
   const tf = require('@tensorflow/tfjs');
   const prediction = model.predict(tf.tensor(input).expandDims());
   return prediction.data().then(data => {

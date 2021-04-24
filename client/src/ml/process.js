@@ -11,11 +11,11 @@ function getDataLocal(line = []) {
   return {label, features};
 }
 
-exports.getData = (lineStr) => {
+export const getData = (lineStr) => {
   return getDataLocal(lineStr);
 }
 
-exports.getDistancesData = (line) => {
+export const getDistancesData = (line) => {
   const pairs = [[2, 5], [3, 6], [4, 8], [8, 12], [8, 20], [4, 12], [4, 16], [12, 16], [9, 12], [0, 20]];
 
   return pairs.map(pair => {
@@ -25,7 +25,7 @@ exports.getDistancesData = (line) => {
   });
 }
 
-exports.prepareData = (rawData) => {
+export const prepareData = (rawData) => {
   const distancesData = [];
 
   rawData.forEach((lineStr) => {
