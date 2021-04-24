@@ -52,11 +52,6 @@ exports.trainModel = function (data) {
   });
 }
 
-exports.testModel = async function(model) {
-
-  return model;
-}
-
 exports.predict = async function (model, input) {
   const tf = require('@tensorflow/tfjs');
   const prediction = model.predict(tf.tensor(input).expandDims());

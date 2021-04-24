@@ -28,9 +28,7 @@ function onResults(results, canvasElement, callback = noop) {
       const isRightHand = classification.label === 'Right';
       const landmarks = results.multiHandLandmarks[index];
       // eslint-disable-next-line
-      drawConnectors(
-        canvasCtx, landmarks, HAND_CONNECTIONS,
-        {color: isRightHand ? '#00FF00' : '#FF0000'});
+      drawConnectors(canvasCtx, landmarks, HAND_CONNECTIONS, {color: isRightHand ? '#00FF00' : '#FF0000'});
       drawLandmarks(canvasCtx, landmarks, {
         color: isRightHand ? '#00FF00' : '#FF0000',
         fillColor: isRightHand ? '#FF0000' : '#00FF00',

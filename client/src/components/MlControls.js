@@ -1,6 +1,6 @@
 import React from 'react'
 import {prepareData} from "../ml/process_v2";
-import {testModel, trainModel} from "../ml/ml_v2";
+import {trainModel} from "../ml/ml_v2";
 import {loadData} from "../api/api";
 import {asJSON} from "../ml/csv";
 
@@ -33,7 +33,6 @@ class MlControls extends React.Component {
     let allData = asJSON(this.state.baseData).concat(this.state.dynamicData);
     const preparedData = prepareData(allData);
     trainModel(preparedData)
-      .then(testModel)
       .then(model => {
         this.props.handleModelChange(model);
       });

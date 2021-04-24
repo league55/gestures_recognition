@@ -12,6 +12,10 @@ exports.asJSON = (contents) => {
   return contents.split("\n")
     .filter(lineStr => lineStr.length)
     .map((lineStr) => {
-      return JSON.parse("[" + lineStr + "]");
-    });
+      try {
+        return JSON.parse("[" + lineStr + "]");
+      } catch (e) {
+        return undefined;
+      }
+    }).filter(a => !!a);
 }
