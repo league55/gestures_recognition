@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/gestures_recognition/static/css/main.a0ff3f4a.chunk.css",
+    "main.js": "/gestures_recognition/static/js/main.14fff7ab.chunk.js",
+    "main.js.map": "/gestures_recognition/static/js/main.14fff7ab.chunk.js.map",
+    "runtime-main.js": "/gestures_recognition/static/js/runtime-main.7d82a58a.js",
+    "runtime-main.js.map": "/gestures_recognition/static/js/runtime-main.7d82a58a.js.map",
+    "static/css/2.db0633a3.chunk.css": "/gestures_recognition/static/css/2.db0633a3.chunk.css",
+    "static/js/2.b26d7e23.chunk.js": "/gestures_recognition/static/js/2.b26d7e23.chunk.js",
+    "static/js/2.b26d7e23.chunk.js.map": "/gestures_recognition/static/js/2.b26d7e23.chunk.js.map",
+    "static/js/3.93d42311.chunk.js": "/gestures_recognition/static/js/3.93d42311.chunk.js",
+    "static/js/3.93d42311.chunk.js.map": "/gestures_recognition/static/js/3.93d42311.chunk.js.map",
+    "index.html": "/gestures_recognition/index.html",
+    "static/css/2.db0633a3.chunk.css.map": "/gestures_recognition/static/css/2.db0633a3.chunk.css.map",
+    "static/css/main.a0ff3f4a.chunk.css.map": "/gestures_recognition/static/css/main.a0ff3f4a.chunk.css.map",
+    "static/js/2.b26d7e23.chunk.js.LICENSE.txt": "/gestures_recognition/static/js/2.b26d7e23.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.7d82a58a.js",
+    "static/css/2.db0633a3.chunk.css",
+    "static/js/2.b26d7e23.chunk.js",
+    "static/css/main.a0ff3f4a.chunk.css",
+    "static/js/main.14fff7ab.chunk.js"
+  ]
+}
