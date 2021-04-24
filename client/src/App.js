@@ -33,7 +33,7 @@ class App extends React.Component {
     if (this.state.model && results) {
       let testEntry = prepareSingleEntry(results[0].concat("lable_unknown"));
       const predictResult = await predict(this.state.model, testEntry.features);
-      const labelsMapping = ["Palm ", "Fist "];
+      const labelsMapping = ["Palm ", "Fist ", "Undefined "];
       let bestMatch = predictResult.indexOf(Math.max(...predictResult));
 
       lastGestureLabel = predictResult[bestMatch] > 0.7 ? labelsMapping[bestMatch] + predictResult[bestMatch] : "Undefined " + predictResult[1];
