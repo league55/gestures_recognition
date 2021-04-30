@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/gestures_recognition/static/css/main.a0ff3f4a.chunk.css",
-    "main.js": "/gestures_recognition/static/js/main.14fff7ab.chunk.js",
-    "main.js.map": "/gestures_recognition/static/js/main.14fff7ab.chunk.js.map",
+    "main.js": "/gestures_recognition/static/js/main.f8772887.chunk.js",
+    "main.js.map": "/gestures_recognition/static/js/main.f8772887.chunk.js.map",
     "runtime-main.js": "/gestures_recognition/static/js/runtime-main.7d82a58a.js",
     "runtime-main.js.map": "/gestures_recognition/static/js/runtime-main.7d82a58a.js.map",
     "static/css/2.db0633a3.chunk.css": "/gestures_recognition/static/css/2.db0633a3.chunk.css",
@@ -20,6 +20,6 @@
     "static/css/2.db0633a3.chunk.css",
     "static/js/2.b26d7e23.chunk.js",
     "static/css/main.a0ff3f4a.chunk.css",
-    "static/js/main.14fff7ab.chunk.js"
+    "static/js/main.f8772887.chunk.js"
   ]
 }
