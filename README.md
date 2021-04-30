@@ -1,4 +1,5 @@
 # Gestures recognition
+## [Demo](https://league55.github.io/gestures_recognition/)
 
 ![logo](logo.png)
 
@@ -11,6 +12,7 @@ The Project works on top of the MediaPipe [hands recognition model](https://goog
 
 ### The project is deployed at [GitHub pages](https://league55.github.io/gestures_recognition/). 
 
+## Instructions
 You can use preloaded data for training model, it can differentiate an open palm, and a "Thumbs up" gestures.
 To train model with preloaded data just hit the "Train" button.
 
