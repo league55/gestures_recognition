@@ -2,7 +2,7 @@
   "name": "client",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://league55.github.io/gestures_recognition/",
+  "homepage": "https://league55.github.io/gestures_recognition",
   "dependencies": {
     "@mediapipe/camera_utils": "^0.1.1606863050",
     "@mediapipe/control_utils": "^0.1.1606863011",

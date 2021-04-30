@@ -3,6 +3,7 @@ import {prepareData} from "../ml/process_v2";
 import {trainModel} from "../ml/ml_v2";
 import {loadData} from "../api/api";
 import {asJSON} from "../ml/csv";
+import {static_data} from "../static_data.js"
 import "./MLControls.scss"
 
 class MlControls extends React.Component {
@@ -19,8 +20,13 @@ class MlControls extends React.Component {
   }
 
   async componentDidMount() {
-    const baseData = await loadData();
-    this.setState({baseData: baseData});
+    try {
+      const baseData = await loadData(); // loaded from dev
+      this.setState({baseData: baseData});
+    } catch (e) {
+      console.log("No server, using static data.");
+      this.setState({baseData: static_data});
+    }
   }
 
   addDataRow(row, label) {

@@ -9,13 +9,16 @@ export const appendLines = (lines, filename = 'data.csv') => {
 
 
 export const asJSON = (contents) => {
-  return contents.split("\n")
-    .filter(lineStr => lineStr.length)
-    .map((lineStr) => {
-      try {
-        return JSON.parse("[" + lineStr + "]");
-      } catch (e) {
-        return undefined;
-      }
-    }).filter(a => !!a);
+  if(typeof contents === "string") {
+    return contents.split("\n")
+      .filter(lineStr => lineStr.length)
+      .map((lineStr) => {
+        try {
+          return JSON.parse("[" + lineStr + "]");
+        } catch (e) {
+          return undefined;
+        }
+      }).filter(a => !!a);
+  }
+  return contents;
 }
